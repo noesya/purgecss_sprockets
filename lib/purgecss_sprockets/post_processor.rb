@@ -10,6 +10,8 @@ module PurgecssSprockets
     end
 
     def self.run(filename, source, context)
+      return source if PurgecssSprockets.disabled
+
       if context && context.environment
         context.environment.logger&.info "Purging CSS from #{filename}"
       end

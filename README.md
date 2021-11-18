@@ -36,11 +36,12 @@ This gem is intended to be used as a post processor step in your asset pipeline:
 
     $ bundle exec rake assets:precompile
 
-You can configure how PurgeCSS is called in an initializer:
+You can temporarily disable the processor or re-configure how PurgeCSS is called in an initializer:
 
 `config/initializers/purgecss_sprockets.rb`:
 
 ```ruby
+PurgecssSprockets.disabled = true # default: false
 PurgecssSprockets.purgecss_cmd = "node node_modules/purgecss/bin/purgecss.js"
 ```
 
