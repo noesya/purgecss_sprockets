@@ -17,7 +17,7 @@ module PurgecssSprockets
       end
 
       file = Tempfile.new(filename)
-      file.write(source)
+      file.write(source.force_encoding('UTF-8'))
       file.rewind
 
       purgecss_result = JSON.parse(`#{PurgecssSprockets.purgecss_cmd} --css #{file.path} --config purgecss.config.js`)
