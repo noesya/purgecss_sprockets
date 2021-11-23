@@ -47,6 +47,16 @@ PurgecssSprockets.purgecss_cmd = "node node_modules/purgecss/bin/purgecss.js"
 
 You can configure PurgeCSS with the generated `purgecss.config.js`.
 
+## Debug
+
+- In an initializer, disable the PurgecssSprockets' post-processor.
+- Run `rails assets:clobber assets:precompile`
+- Open a Rails console and run this:
+  ```ruby
+  json = JSON.parse(`node node_modules/purgecss/bin/purgecss.js --css public/assets/[your-digested-css-file].css --config purgecss.config.js --rejected`)[0]
+  ```
+- You can now check which selectors are rejected by PurgeCSS in `json['rejected']`.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
