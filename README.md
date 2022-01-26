@@ -45,6 +45,14 @@ PurgecssSprockets.disabled = true # default: false
 PurgecssSprockets.purgecss_cmd = "node node_modules/purgecss/bin/purgecss.js"
 ```
 
+You can exclude some entrypoints by filling the `exclude_files` in the initializer:
+
+```ruby
+PurgecssSprockets.exclude_files = %w(
+  app/assets/stylesheets/admin.sass
+)
+```
+
 You can configure PurgeCSS with the generated `purgecss.config.js`.
 
 ## Debug

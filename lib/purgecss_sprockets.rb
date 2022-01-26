@@ -7,10 +7,14 @@ module PurgecssSprockets
   class Error < StandardError; end
 
   class << self
-    attr_writer :disabled, :purgecss_cmd
+    attr_writer :disabled, :exclude_files, :purgecss_cmd
 
     def disabled
       @disabled ||= false
+    end
+
+    def exclude_files
+      @exclude_files ||= []
     end
 
     def purgecss_cmd

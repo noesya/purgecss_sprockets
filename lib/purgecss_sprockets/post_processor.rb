@@ -12,8 +12,14 @@ module PurgecssSprockets
     def self.run(filename, source, context)
       return source if PurgecssSprockets.disabled
 
+      filepath_from_root = filename.gsub("#{Rails.root}/", '')
       if context && context.environment
-        context.environment.logger&.info "Purging CSS from #{filename}"
+        if PurgecssSprockets.exclude_files.include?(filepath_from_root)
+          context.environment.logger&.info "Skipping CSS purge of #{filename}"
+          return source
+        else
+          context.environment.logger&.info "Purging CSS from #{filename}"
+        end
       end
 
       file = Tempfile.new(filename)
